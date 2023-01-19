@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'utilities/header.html' %}
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="bg-danger d-flex justify-content-center align-middle"
+      style="height: 30vh"
+    >
+      <img src="{% static 'images/carrito.png' %}" />
+    </div>
+    <div class="container" style="height:56vh;">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex justify-content-center flex-column ">
+          <h1 class="text-danger mx-auto">Muchas Gracias</h1>
+          <h3 class="mx-auto">Por comprar en este lugar!</h3>
+          <p class="mx-auto w-25 my-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti autem adipisci velit facilis? Voluptatem, expedita, quasi repellat delectus, vel consequatur odi
+          </p>
+
+          <a href="/" type="button" class="btn btn-dark w-25 mx-auto p-3">VOLVER A LA TIENDA</a>
+
+          <p class="mx-auto w-50 mt-5">
+            Si tiene un problema con el producto, nuestro Email<strong>: tienda@probando.cl</strong>
+          </p >
+        </div>
+      </div>
+    </div>
+    {% include 'components/footer.html' %}
+    {% include 'utilities/scripts.html' %}
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'utilities/header.html' %}
+    <title>Formulario Registro Usuario</title>
+  </head>
+  <body>
+    <div class="d-flex flex-nowrap">
+      {% include 'components/menu.html' %}
+      <div class="container mt-5">
+        <div class="alert alert-primary display-2 text-center">
+          Registro de Usuario/Tipo Usuario
+        </div>
+        <form action="#" method="post" class="form-control">
+            {{ form.as_p }} {% csrf_token %}
+            <input type="submit" class="btn btn-primary mt-2" value="Enviar" />
+          </form>
+      </div>
+    </div>
+  </body>
+</html>

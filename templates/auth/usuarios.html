@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'utilities/header.html' %}
+
+    <title>Usuarios</title>
+  </head>
+  <body>
+    <div class="d-flex flex-nowrap">
+      {% include 'components/menu.html' %}
+
+      <div class="container">
+        <div class="alert alert-danger display-2 text-center mt-5">
+          Administrar Usuarios
+        </div>
+
+        <a  href="{% url 'agregarUsuario' %}" class="btn btn-primary">Agregar Usuarios</a>
+
+        {% if usuarios %}
+        <form action="#" method="post" class="form-control mt-3">
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha Nacimiento</th>
+                <th>Tipo de Usuario</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in usuarios %}
+              <tr>
+                <td>{{u.nombre}}</td>
+                <td>{{u.apellido}}</td>
+                <td>{{u.fecha_nacimiento}}</td>
+                <td>{{u.tipoUsuario.nombre}}</td>
+                <td>
+                  <a href="{% url 'actualizarUsuario' u.id %}" type="button" class="btn btn-primary p-1">
+                    <ion-icon name="pencil" size="large"></ion-icon>
+                  </a>
+                  <a href="{% url 'eliminarUsuario' u.id %}" class="btn btn-danger p-1">
+                    <ion-icon name="close-circle" size="large"></ion-icon>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <div class="alert alert-primary mt-3" role="alert">
+            <strong>No se encontraron usuarios en el sistema</strong>
+          </div>
+          {% endif %}
+        </form>
+        {% if mensaje %}
+        <div class="alert alert-danger" role="alert">{{mensaje}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

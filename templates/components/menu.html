@@ -1,0 +1,74 @@
+{% include 'utilities/scripts.html' %}
+<div
+  class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
+  style="width: 280px; height: 100vh"
+>
+  <a
+    href="#"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+  >
+    <ion-icon name="disc" size="large"></ion-icon>
+    <span class="fs-4 mx-2">Disqueria</span>
+  </a>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item mx-2">
+      <a href="{% url 'dashboard' %}" class="nav-link text-white" aria-current="page">
+        <div class="d-flex flex-row align-items-center">
+          <ion-icon name="disc-sharp" size="large"></ion-icon>
+          <span class="mx-3">Discos</span>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item mx-2">
+      <a href="{% url 'tipoDiscos' %}" class="nav-link text-white" aria-current="page">
+        <div class="d-flex flex-row align-items-center">
+          <ion-icon name="invert-mode-sharp" size="large"></ion-icon>
+          <span class="mx-3">Tipos de Disco</span>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item mx-2">
+      <a href="{% url 'usuarios' %}" class="nav-link text-white" aria-current="page">
+        <div class="d-flex flex-row align-items-center">
+          <ion-icon name="person-circle-sharp" size="large"></ion-icon>
+          <span class="mx-3">Usuarios</span>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item mx-2">
+      <a href="{% url 'tipoUsuarios' %}" class="nav-link text-white" aria-current="page">
+        <div class="d-flex flex-row align-items-center">
+          <ion-icon name="people-circle-sharp" size="large"></ion-icon>
+          <span class="mx-3">Tipos de Usuario</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <hr />
+  <div class="dropdown">
+    <a
+      href="#"
+      class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        src="https://github.com/mdo.png"
+        alt=""
+        width="32"
+        height="32"
+        class="rounded-circle me-2"
+      />
+      <strong>Opciones</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      <li><a class="dropdown-item" href="/">Volver a la tienda</a></li>
+      <li>
+        <a class="dropdown-item" href="/admin">Configuración Avanzada</a>
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
+    </ul>
+  </div>
+</div>

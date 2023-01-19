@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'utilities/header.html' %}
+    <title>Disqueria</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-danger sticky-top">
+      <div class="container-fluid">
+        <ion-icon name="disc-sharp" size="large"></ion-icon>
+
+        <ul class="navbar-nav me-auto d-flex flex-row">
+          <li class="nav-item mx-3">
+            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#">Discos</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#">Sobre nosotros</a>
+          </li>
+        </ul>
+        <a
+          type="button"
+          class="btn btn-danger position-relative"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#carritoOffCanvas"
+          aria-controls="carritoOffCanvas"
+        >
+
+          <span
+            class="position-absolute start-0 translate-middle-x badge rounded-pill bg-dark"
+          >
+          {{cantidad_discos}}
+          </span>
+
+          <ion-icon name="cart-outline" size="large"></ion-icon>
+        </a>
+        <a class="btn btn-danger" type="button" href="#">
+          <ion-icon name="star-half-outline" size="large"></ion-icon>
+        </a>
+        <a class="btn btn-danger" type="button" href="admin/login">
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+        </a>
+
+        <div
+          class="offcanvas offcanvas-end text-bg-dark"
+          tabindex="-1"
+          id="carritoOffCanvas"
+          aria-labelledby="carritoOffCanvasLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="carritoOffCanvasLabel">
+              Mi Carrito
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            {% if request.session.carrito.items %}
+
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for key, value in request.session.carrito.items %}
+                <tr>
+                  <td>{{value.nombre}}</td>
+                  <td>{{value.acumulado}}</td>
+                  <td>{{value.cantidad}}</td>
+                  <td class="d-flex flex-row">
+                    <a
+                      href="{% url 'Add' value.disco_id %}"
+                      class="text-primary"
+                      ><ion-icon name="add-circle" size="large"></ion-icon
+                    ></a>
+                    <a
+                      href="{% url 'Sub' value.disco_id %}"
+                      class="text-danger"
+                      ><ion-icon name="remove-circle" size="large"></ion-icon
+                    ></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <h3>Total: ${{total_carrito}}</h3>
+            <div class="mt-4 d-flex align-items-center justify-content-between">
+              <a href="{% url 'CLS' %}" class="btn btn-danger"
+                ><ion-icon name="trash-outline"></ion-icon
+              ></a>
+              <a href="{% url 'carrito' %}" class="btn btn-primary">Finalizar Compra</a>
+            </div>
+
+            {% else %}
+            <h6>Aún no has agregado ningun disco al carrito</h6>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="bg-dark">
+      <div class="container py-5">
+        <div
+          id="my_carousel"
+          class="carousel carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#my_carousel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#my_carousel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#my_carousel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+              <img
+                src="{% static 'images/disqueria.jpg' %}"
+                class="d-block w-100 opacity-50 shadow-lg rounded"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+              <img
+                src="{% static 'images/discos.jpg' %}"
+                class="d-block w-100 opacity-50 shadow-lg rounded"
+                style="cursor: pointer"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+              <img
+                src="{% static 'images/vinilo.jpg' %}"
+                class="d-block w-100 opacity-50 shadow-lg rounded"
+                style="cursor: pointer"
+                alt="..."
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev mb-5"
+          type="button"
+          data-bs-target="#my_carousel"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon mb-5"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next mb-5"
+          type="button"
+          data-bs-target="#my_carousel"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon mb-5"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="container my-5">
+      <h4 class="mb-5">Algunos discos destacados:</h4>
+      <div class="row row-cols-2 row-cols-md-4 g-4">
+        {% for disco in discos %}
+        <div class="col">
+          <div class="card">
+            <img src="{{disco.url_imagen}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                {{disco.nombre}} ({{disco.tipoDisco.nombre}})
+              </h5>
+              <p>{{disco.descripcion}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Valor: ${{disco.valor}}</li>
+              <a
+                href="{% url 'Add' disco.id %}"
+                class="btn btn-dark mx-auto my-3"
+              >
+                Agregar al Carrito
+              </a>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% include 'components/footer.html' %}
+    {% include 'utilities/scripts.html' %}
+  </body>
+</html>

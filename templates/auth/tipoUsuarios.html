@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'utilities/header.html' %}
+
+    <title>Usuarios</title>
+  </head>
+  <body>
+    <div class="d-flex flex-nowrap">
+      {% include 'components/menu.html' %}
+
+      <div class="container">
+        <div class="alert alert-danger display-2 text-center mt-5">
+          Administrar Tipos de Usuario
+        </div>
+
+        <a href="{% url 'agregarTipoUsuario' %}" class="btn btn-primary">Agregar Tipo de Usuario</a>
+
+        {% if tipoUsuarios %}
+        <form action="#" method="post" class="form-control mt-3">
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cargos</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tpu in tipoUsuarios %}
+              <tr>
+                <td>{{tpu.id}}</td>
+                <td>{{tpu.nombre}}</td>
+                <td>
+                  <a href="{% url 'actualizarTipoUsuario' tpu.id %}" type="button" class="btn btn-primary p-1">
+                    <ion-icon name="pencil" size="large"></ion-icon>
+                  </a>
+                  <a href="{% url 'eliminarTipoUsuario' tpu.id %}" class="btn btn-danger p-1">
+                    <ion-icon name="close-circle" size="large"></ion-icon>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <div class="alert alert-primary mt-3" role="alert">
+            <strong>No se encontraron tipos de usuarios en el sistema</strong>
+          </div>
+          {% endif %}
+        </form>
+        {% if mensaje %}
+        <div class="alert alert-danger" role="alert">{{mensaje}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
